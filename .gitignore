@@ -1,0 +1,6 @@
+.DS_Store
+.htaccess
+lib/php/helper.php
+.json
+.sql
+error_log

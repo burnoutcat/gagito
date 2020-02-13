@@ -1,0 +1,92 @@
+<?php 
+
+require_once "lib/php/helper.php";
+require_once "element/templates.php"
+
+ ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>All Products | Gagito</title>
+	<meta name="viewport" content="width=device-width">
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,700|Roboto+Condensed:200,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="common/common.css">
+	<link rel="stylesheet" href="common/site.css">
+	<link rel="stylesheet" href="css/index-style.css">
+
+	<script src="lib/jquery-3.4.1.min.js"></script>
+	<script src="js/helper.js"></script>
+	<script src="js/templates.js"></script>
+	<script src="js/product.js"></script>
+	<script type="text/javascript" src="js/fake_interactions.js"></script>
+
+</head>
+<body>
+
+	<?php include "element/main-header.php" ?><!--  header -->
+
+	<div class="all-product-text title-text container">
+		<p>All Products</p>
+		<button class="filter-button button-wide-dark" onclick="location.href='#'" type="button" class="button">Filter</button>
+	</div>
+
+
+	
+	<div class="all-product-window image-wrapper flex-parent">
+		<div class="all-product-filter">
+			<div class="all-product-filter-textwrapper">
+				<nav class="filter-categories all-product-title">
+
+
+					<h1>Categories</h1>
+						<a href="#">Headphoones</a>
+						<a href="#">In-Ear Monitors</a>
+						<a href="#">Speakers</a>
+						<a href="#">Amplifier</a>
+						<a href="#">Music Player</a>
+						<h2>+More</h2>
+					<h1>Brands</h1>
+						<a href="#">AKG</a>
+						<a href="#">Fitear</a>
+						<a href="#">InEarz</a>
+						<a href="#">KEF</a>
+						<a href="#">Master & Dynamic</a>
+						<h2>+More</h2>
+				</nav>
+			</div>
+		</div>
+		<div class="all-product-list row gap xs-large flex-child">
+			<div class="row gap xs-large ">
+				<!--  .col-md-4.col-sm-6*12>a[href=product-item.php].card.product-item>(div.product-image>img[scr=https://via.placeholder.com/200].product-image)+div.product-text-wrapper>(div.product-brand>h3{Lorem})+(div.product-name>h2{Product $})+(div.product-price>h1{\$200}) -->
+
+				<?php 
+
+						$result = makeQuery(
+							makeConn(),
+							"
+							SELECT * 
+							FROM `product`
+							"
+						);
+
+							echo array_reduce($result,
+							'productListTemplate');
+
+	
+					 ?>
+
+				 
+
+			</div> <!-- row gap xs-large -->
+
+		</div><!-- all-product-list -->
+	</div><!-- all-product-window -->
+
+	<?php include "element/main-footer.php" ?> <!-- footer -->
+
+</body>
+</html>
